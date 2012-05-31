@@ -39,7 +39,7 @@ module Shoppr
     
     private
       def default_options
-        {:apiKey => self.api_key, :trackingId => self.tracking_id, :groupItemsByCategory => true}
+        {:apiKey => self.api_key, :trackingId => self.tracking_id}
       end
       
       def prep_query_options(options)
