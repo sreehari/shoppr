@@ -5,7 +5,7 @@ module Shoppr
     def initialize(cat_mash)   
       Shoppr.map_mash_attrs(self, cat_mash)
       
-      @offers = self.offers && self.offers.offer ? self.offers.offer.map {|offer| Offer.new(offer) } : []
+      @offers = self.offers && self.offers.offer && self.offers['matchedOfferCount'].to_i > 1 ? self.offers.offer.map {|offer| Offer.new(offer) } : []
       
       @overall_rating = self.reviews.averageRating.overallRating rescue nil
       
