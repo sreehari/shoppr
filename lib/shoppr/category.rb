@@ -1,7 +1,7 @@
 module Shoppr
   class Category
     
-    attr_accessor :attributes, :products
+    attr_accessor :attributes, :products, :offers
     
     def initialize(cat_mash)        
       Shoppr.map_mash_attrs(self, cat_mash)
@@ -17,6 +17,12 @@ module Shoppr
       end
     
       if self.items
+        if self.items.offer.is_a?(Array)
+          @offers = self.items.offer.map {|offer| Offer.new(offer) } 
+        else
+          @offers = self.items.offer ? [Offer.new(self.items.offer)] : []
+        end
+        
         if self.items.product.is_a?(Array)
           @products = self.items.product.map {|product| Product.new(product) } 
         else
