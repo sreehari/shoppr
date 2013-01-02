@@ -9,6 +9,7 @@ module Shoppr
       if self.attributes
         if self.attributes.attribute
           @attributes = self.attributes.attribute.map {|attribute| Attribute.new(attribute) } 
+          @attributes.uniq!{ |attribute| attribute.id }
         else
           @attributes = []
         end
